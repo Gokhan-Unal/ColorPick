@@ -7,13 +7,8 @@ const currentHexes = document.querySelectorAll('.color h2')
 let initialColors
 // Generate a color
 function generateHex() {
-  const letters = '0123456789ABCDEF'
-  let hash = '#'
-  for (let i = 0; i < 6; i++) {
-    hash += letters[Math.floor(Math.random() * 15)]
-  }
-
-  return hash
+  const hexColor = chroma.random()
+  return hexColor
 }
 
 function randomColors() {
@@ -25,8 +20,19 @@ function randomColors() {
     // ad the color to the dom
     div.style.backgroundColor = randomColor
     hexText.textContent = randomColor
+    // Check contrast
+    checkTextContrast(randomColor, hexText)
   })
 }
 // console.log(generateHex())
+
+function checkTextContrast(color, text) {
+  const luminance = chroma(color).luminance() // how dark or light is the text
+  if (luminance > 0.5) {
+    text.style.color = 'black'
+  } else {
+    text.style.color = 'white'
+  }
+}
 
 console.log(randomColors())
