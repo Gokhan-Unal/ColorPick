@@ -5,6 +5,12 @@ const sliders = document.querySelectorAll('input[type="range"]')
 const currentHexes = document.querySelectorAll('.color h2')
 
 let initialColors
+
+// add our event listeners
+sliders.forEach((slider) => {
+  slider.addEventListener('input', hslControls)
+})
+
 // Generate a color
 function generateHex() {
   const hexColor = chroma.random()
@@ -32,7 +38,6 @@ function randomColors() {
     colorizeSliders(color, hue, brightness, saturation)
   })
 }
-// console.log(generateHex())
 
 function checkTextContrast(color, text) {
   const luminance = chroma(color).luminance() // how dark or light is the text
@@ -51,7 +56,7 @@ function colorizeSliders(color, hue, brightness, saturation) {
 
   const midBright = color.set('hsl.s', 0.5)
   // no need to select 0 or 1 bc we know these are the color of black and white
-  const scaleBright = chroma.scale(["black", midBright, "white"])
+  const scaleBright = chroma.scale(['black', midBright, 'white'])
 
   // update input colors
   saturation.style.backgroundImage = `linear-gradient(to right, ${scaleSaturation(
@@ -65,4 +70,29 @@ function colorizeSliders(color, hue, brightness, saturation) {
   hue.style.backgroundImage = `linear-gradient(to right, rgb(204,75,75),rgb(204,204,75),rgb(75,204,75),rgb(75,204,204),rgb(75,75,204),rgb(204,75,204),rgb(204,75,75))`
 }
 
-console.log(randomColors())
+function hslControls(e) {
+  const index =
+    e.target.getAttribute('data-bright') ||
+    e.target.getAttribute('data-saturation') ||
+    e.target.getAttribute('data-hue')
+  // console.log(index);
+
+  // select the .sliders
+  let sliders = e.target.parentElement.querySelectorAll('input[type="range"]')
+  const hue = sliders[0]
+  const brightness = sliders[1]
+  const saturation = sliders[2]
+
+  // give me the hex value
+  const bgColor = colorDivs[index].querySelector('h2').textContent
+  console.log(bgColor)
+
+  let color = chroma(bgColor)
+    .set('hsl.s', saturation.value)
+    .set('hsl.l', brightness.value)
+    .set('hsl.h', hue.value)
+
+  colorDivs[index].style.backgroundColor = color
+}
+
+randomColors()
