@@ -24,10 +24,14 @@ function generateHex() {
 }
 
 function randomColors() {
+  initialColors = []
   colorDivs.forEach((div, index) => {
     // console.log(div.children[0]); i need to get h2 attribute which is hex.
     const hexText = div.children[0]
     const randomColor = generateHex()
+
+    // get the hex values and store it in initialColors
+    initialColors.push(chroma(randomColor).hex())
 
     // ad the color to the dom
     div.style.backgroundColor = randomColor
@@ -60,7 +64,7 @@ function colorizeSliders(color, hue, brightness, saturation) {
   const fullSaturation = color.set('hsl.s', 1)
   const scaleSaturation = chroma.scale([noSaturation, color, fullSaturation])
 
-  const midBright = color.set('hsl.s', 0.5)
+  const midBright = color.set('hsl.l', 0.5)
   // no need to select 0 or 1 bc we know these are the color of black and white
   const scaleBright = chroma.scale(['black', midBright, 'white'])
 
@@ -79,18 +83,19 @@ function colorizeSliders(color, hue, brightness, saturation) {
 function hslControls(e) {
   const index =
     e.target.getAttribute('data-bright') ||
-    e.target.getAttribute('data-saturation') ||
+    e.target.getAttribute('data-sat') ||
     e.target.getAttribute('data-hue')
   // console.log(index);
 
   // select the .sliders
   let sliders = e.target.parentElement.querySelectorAll('input[type="range"]')
+  console.log(sliders)
   const hue = sliders[0]
   const brightness = sliders[1]
   const saturation = sliders[2]
 
   // give me the hex value
-  const bgColor = colorDivs[index].querySelector('h2').textContent
+  const bgColor = initialColors[index]
   console.log(bgColor)
 
   let color = chroma(bgColor)
