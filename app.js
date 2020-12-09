@@ -11,7 +11,7 @@ const sliderContainers = document.querySelectorAll('.sliders')
 const lockButton = document.querySelectorAll('.lock')
 
 // console.log(adjustBtn);
-console.log(hexSpans);
+console.log(hexSpans)
 
 let initialColors
 
@@ -65,8 +65,13 @@ function randomColors() {
     const hexText = div.children[0]
     const randomColor = generateHex()
 
-    // get the hex values and store it in initialColors
-    initialColors.push(chroma(randomColor).hex())
+    if (div.classList.contains('locked')) {
+      initialColors.push(hexText.innerText)
+      return
+    } else {
+      // get the hex values and store it in initialColors
+      initialColors.push(chroma(randomColor).hex())
+    }
 
     // ad the color to the dom
     div.style.backgroundColor = randomColor
