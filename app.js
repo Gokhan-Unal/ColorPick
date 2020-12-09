@@ -3,6 +3,7 @@ const colorDivs = document.querySelectorAll('.color')
 const generateBtn = document.querySelector('.generate')
 const sliders = document.querySelectorAll('input[type="range"]')
 const currentHexes = document.querySelectorAll('.color h2')
+const hexSpans = document.querySelectorAll('.sliders span')
 
 let initialColors
 
@@ -46,6 +47,10 @@ function randomColors() {
     const saturation = sliders[2]
 
     colorizeSliders(color, hue, brightness, saturation)
+
+    hexSpans.forEach((span) => {
+      checkTextContrast(randomColor, span)
+    })
   })
   resetInputs()
 }
@@ -74,9 +79,9 @@ function colorizeSliders(color, hue, brightness, saturation) {
     0
   )}, ${scaleSaturation(1)})`
 
-  brightness.style.backgroundImage = `linear-gradient(to right, ${scaleBright(
-    0
-  )}, ${scaleBright(0.5)}, ${scaleBright(1)})`
+  brightness.style.backgroundImage = `linear-gradient(to right, ${scaleBright(0)}, ${scaleBright(
+    0.5
+  )}, ${scaleBright(1)})`
 
   hue.style.backgroundImage = `linear-gradient(to right, rgb(204,75,75),rgb(204,204,75),rgb(75,204,75),rgb(75,204,204),rgb(75,75,204),rgb(204,75,204),rgb(204,75,75))`
 }
@@ -119,6 +124,10 @@ function updateTextUI(index) {
   checkTextContrast(color, textHex)
   for (icon of icons) {
     checkTextContrast(color, icon)
+  }
+  
+  for (span of hexSpans) {
+    checkTextContrast(color, span)
   }
 }
 
