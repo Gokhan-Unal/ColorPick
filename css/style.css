@@ -6,19 +6,19 @@ path, i, svg { pointer-events: none; }
 
 .colors { min-height: 100vh; display: -webkit-box; display: -ms-flexbox; display: flex; color: #d4d4d4; }
 
-.color { height: 100vh; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-flex: 1; -ms-flex: 1; flex: 1; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: space-evenly; -ms-flex-pack: space-evenly; justify-content: space-evenly; position: relative; overflow: hidden; }
+.color { height: 90vh; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-flex: 1; -ms-flex: 1; flex: 1; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: space-evenly; -ms-flex-pack: space-evenly; justify-content: space-evenly; position: relative; overflow: hidden; }
 
 .color h2 { font-size: 2rem; cursor: pointer; }
 
-.color .sliders { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; position: absolute; bottom: 0%; background: transparent; padding: 1rem; width: 80%; border-top-left-radius: 1rem; border-top-right-radius: 1rem; -webkit-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; }
+.color .sliders { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; position: absolute; bottom: 0%; background: transparent; padding: 1rem; width: 80%; pointer-events: none; border-top-left-radius: 1rem; border-top-right-radius: 1rem; opacity: 0; -webkit-transform: translateY(200px); transform: translateY(200px); -webkit-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; }
+
+.color .sliders.active { opacity: 1; -webkit-transform: translateY(0px); transform: translateY(0px); pointer-events: all; }
 
 .color .sliders button { position: absolute; top: 0; right: 0; padding: 0.5rem; border-top-right-radius: 1rem; border-bottom-left-radius: 1rem; border: none; color: white; background: #e22c2c; cursor: pointer; font-weight: bold; }
 
 .color .sliders span { color: black; }
 
 .color .sliders input[type='range'] { -webkit-appearance: none; margin: 1rem 0; width: 100%; position: relative; border-radius: 1rem; cursor: pointer; }
-
-.color.active { opacity: 1; -webkit-transform: translateY(0px); transform: translateY(0px); pointer-events: all; }
 
 .color .controls { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
 

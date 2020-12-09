@@ -24,7 +24,7 @@ svg {
 }
 
 .color {
-  height: 100vh;
+  height: 90vh;
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -46,13 +46,19 @@ svg {
     background: transparent;
     padding: 1rem;
     width: 80%;
-    // pointer-events: none;
+    pointer-events: none;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
-    // opacity: 0;
+    opacity: 0;
     // adjustment classes
-    // transform: translateY(100px);
+    transform: translateY(200px);
     transition: all 0.5s ease-in-out;
+
+    &.active {
+      opacity: 1;
+      transform: translateY(0px);
+      pointer-events: all;
+    }
 
     button {
       position: absolute;
@@ -81,12 +87,6 @@ svg {
       border-radius: 1rem;
       cursor: pointer;
     }
-  }
-
-  &.active {
-    opacity: 1;
-    transform: translateY(0px);
-    pointer-events: all;
   }
 
   .controls {
