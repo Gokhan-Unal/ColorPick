@@ -4,13 +4,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxyge
 
 path, i, svg { pointer-events: none; }
 
-.colors { min-height: 80vh; display: -webkit-box; display: -ms-flexbox; display: flex; color: #d4d4d4; }
+.colors { min-height: 100vh; display: -webkit-box; display: -ms-flexbox; display: flex; color: #d4d4d4; }
 
-.color { height: 90vh; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-flex: 1; -ms-flex: 1; flex: 1; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: space-evenly; -ms-flex-pack: space-evenly; justify-content: space-evenly; position: relative; overflow: hidden; }
+.color { height: 100vh; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-flex: 1; -ms-flex: 1; flex: 1; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: space-evenly; -ms-flex-pack: space-evenly; justify-content: space-evenly; position: relative; overflow: hidden; }
 
 .color h2 { font-size: 2rem; cursor: pointer; }
 
-.color .sliders { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; position: absolute; bottom: 0%; background: white; padding: 1rem; width: 80%; border-top-left-radius: 1rem; border-top-right-radius: 1rem; -webkit-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; }
+.color .sliders { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; position: absolute; bottom: 0%; background: transparent; padding: 1rem; width: 80%; border-top-left-radius: 1rem; border-top-right-radius: 1rem; -webkit-transition: all 0.5s ease-in-out; transition: all 0.5s ease-in-out; }
 
 .color .sliders button { position: absolute; top: 0; right: 0; padding: 0.5rem; border-top-right-radius: 1rem; border-bottom-left-radius: 1rem; border: none; color: white; background: #e22c2c; cursor: pointer; font-weight: bold; }
 
@@ -22,7 +22,7 @@ path, i, svg { pointer-events: none; }
 
 .color .controls { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; }
 
-.color .controls .adjust, .color .controls .lock { font-size: 2rem; border: none; background: none; cursor: pointer; margin: 2rem 0rem; }
+.color .controls .adjust, .color .controls .lock { font-size: 2rem; border: none; background: none; cursor: pointer; margin: 2rem 0; }
 
 .panel { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: space-evenly; -ms-flex-pack: space-evenly; justify-content: space-evenly; height: 20vh; }
 
@@ -31,3 +31,13 @@ path, i, svg { pointer-events: none; }
 .panel p { font-size: 1.2rem; }
 
 .panel .library-panel, .panel .generate-panel, .panel .save-panel { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
+
+.copy-container { position: fixed; top: 0; left: 0; background: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; opacity: 0; pointer-events: none; }
+
+.copy-container.active { opacity: 1; pointer-events: all; }
+
+.copy-container .copy-popup { background: white; padding: 2rem; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-pack: space-evenly; -ms-flex-pack: space-evenly; justify-content: space-evenly; -webkit-box-align: center; -ms-flex-align: center; align-items: center; border-radius: 1rem; -webkit-transform: translateY(-2rem); transform: translateY(-2rem); -webkit-transition: -webkit-transform 0.5s ease; transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; transition: transform 0.5s ease, -webkit-transform 0.5s ease; }
+
+.copy-container .copy-popup.active { -webkit-transform: translateY(0rem); transform: translateY(0rem); }
+
+.copy-container .copy-popup h4 { font-size: 2rem; padding: 0.5rem; }
