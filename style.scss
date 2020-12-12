@@ -135,7 +135,9 @@ svg {
   }
 }
 
-.copy-container {
+.copy-container,
+.save-container,
+.library-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -153,7 +155,9 @@ svg {
     pointer-events: all;
   }
 
-  .copy-popup {
+  .copy-popup,
+  .save-popup,
+  .library-popup {
     background: white;
     padding: 2rem;
     display: flex;
@@ -165,12 +169,51 @@ svg {
     transition: transform 0.5s ease;
 
     &.active {
-      transform: translateY(0rem);
+      transform: translateY(2rem);
     }
   }
 
-  .copy-popup h4 {
+  .copy-popup h4,
+  .save-popup h4,
+  .library-popup h4 {
     font-size: 2rem;
     padding: 0.5rem;
+  }
+
+  .save-name {
+    font-size: 1.5rem;
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+  }
+  .save-name::placeholder {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .submit-save {
+    margin: 2rem;
+    padding: 1rem 3rem;
+    background: rgba($color: #606292, $alpha: 1);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .close-save,
+  .close-library {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    border: none;
+    color: white;
+    background: rgb(226, 44, 44);
+    cursor: pointer;
+    font-weight: bold;
   }
 }

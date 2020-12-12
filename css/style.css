@@ -32,12 +32,26 @@ path, i, svg { pointer-events: none; }
 
 .panel .library-panel, .panel .generate-panel, .panel .save-panel { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-align: center; -ms-flex-align: center; align-items: center; }
 
-.copy-container { position: fixed; top: 0; left: 0; background: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; opacity: 0; pointer-events: none; }
+.copy-container, .save-container, .library-container { position: fixed; top: 0; left: 0; background: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; opacity: 0; pointer-events: none; }
 
-.copy-container.active { opacity: 1; pointer-events: all; }
+.copy-container.active, .save-container.active, .library-container.active { opacity: 1; pointer-events: all; }
 
-.copy-container .copy-popup { background: white; padding: 2rem; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-pack: space-evenly; -ms-flex-pack: space-evenly; justify-content: space-evenly; -webkit-box-align: center; -ms-flex-align: center; align-items: center; border-radius: 1rem; -webkit-transform: translateY(-2rem); transform: translateY(-2rem); -webkit-transition: -webkit-transform 0.5s ease; transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; transition: transform 0.5s ease, -webkit-transform 0.5s ease; }
+.copy-container .copy-popup, .copy-container .save-popup, .copy-container .library-popup, .save-container .copy-popup, .save-container .save-popup, .save-container .library-popup, .library-container .copy-popup, .library-container .save-popup, .library-container .library-popup { background: white; padding: 2rem; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-pack: space-evenly; -ms-flex-pack: space-evenly; justify-content: space-evenly; -webkit-box-align: center; -ms-flex-align: center; align-items: center; border-radius: 1rem; -webkit-transform: translateY(-2rem); transform: translateY(-2rem); -webkit-transition: -webkit-transform 0.5s ease; transition: -webkit-transform 0.5s ease; transition: transform 0.5s ease; transition: transform 0.5s ease, -webkit-transform 0.5s ease; }
 
-.copy-container .copy-popup.active { -webkit-transform: translateY(0rem); transform: translateY(0rem); }
+.copy-container .copy-popup.active, .copy-container .save-popup.active, .copy-container .library-popup.active, .save-container .copy-popup.active, .save-container .save-popup.active, .save-container .library-popup.active, .library-container .copy-popup.active, .library-container .save-popup.active, .library-container .library-popup.active { -webkit-transform: translateY(2rem); transform: translateY(2rem); }
 
-.copy-container .copy-popup h4 { font-size: 2rem; padding: 0.5rem; }
+.copy-container .copy-popup h4, .copy-container .save-popup h4, .copy-container .library-popup h4, .save-container .copy-popup h4, .save-container .save-popup h4, .save-container .library-popup h4, .library-container .copy-popup h4, .library-container .save-popup h4, .library-container .library-popup h4 { font-size: 2rem; padding: 0.5rem; }
+
+.copy-container .save-name, .save-container .save-name, .library-container .save-name { font-size: 1.5rem; padding: 1rem; border: none; border-bottom: 1px solid black; outline: none; }
+
+.copy-container .save-name::-webkit-input-placeholder, .save-container .save-name::-webkit-input-placeholder, .library-container .save-name::-webkit-input-placeholder { font-size: 1rem; text-align: center; }
+
+.copy-container .save-name:-ms-input-placeholder, .save-container .save-name:-ms-input-placeholder, .library-container .save-name:-ms-input-placeholder { font-size: 1rem; text-align: center; }
+
+.copy-container .save-name::-ms-input-placeholder, .save-container .save-name::-ms-input-placeholder, .library-container .save-name::-ms-input-placeholder { font-size: 1rem; text-align: center; }
+
+.copy-container .save-name::placeholder, .save-container .save-name::placeholder, .library-container .save-name::placeholder { font-size: 1rem; text-align: center; }
+
+.copy-container .submit-save, .save-container .submit-save, .library-container .submit-save { margin: 2rem; padding: 1rem 3rem; background: #606292; border: none; border-radius: 10px; color: white; cursor: pointer; }
+
+.copy-container .close-save, .copy-container .close-library, .save-container .close-save, .save-container .close-library, .library-container .close-save, .library-container .close-library { position: absolute; top: 0; right: 0; padding: 0.5rem; border-top-right-radius: 1rem; border-bottom-left-radius: 1rem; border: none; color: white; background: #e22c2c; cursor: pointer; font-weight: bold; }
