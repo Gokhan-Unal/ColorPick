@@ -36,9 +36,21 @@ path, i, svg { pointer-events: none; }
 
 .copy-container.active, .save-container.active, .library-container.active { opacity: 1; pointer-events: all; }
 
-.copy-container .copy-popup, .copy-container .save-popup, .copy-container .library-popup, .save-container .copy-popup, .save-container .save-popup, .save-container .library-popup, .library-container .copy-popup, .library-container .save-popup, .library-container .library-popup { background: white; padding: 2rem; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-pack: space-evenly; -ms-flex-pack: space-evenly; justify-content: space-evenly; -webkit-box-align: center; -ms-flex-align: center; align-items: center; border-radius: 1rem; -webkit-transition: -webkit-transform 1s ease; transition: -webkit-transform 1s ease; transition: transform 1s ease; transition: transform 1s ease, -webkit-transform 1s ease; }
+.copy-container .copy-popup, .copy-container .save-popup, .copy-container .library-popup, .save-container .copy-popup, .save-container .save-popup, .save-container .library-popup, .library-container .copy-popup, .library-container .save-popup, .library-container .library-popup { background: white; padding: 2rem; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: vertical; -webkit-box-direction: normal; -ms-flex-direction: column; flex-direction: column; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; -webkit-box-align: center; -ms-flex-align: center; align-items: center; border-radius: 1rem; -webkit-transition: -webkit-transform 1s ease; transition: -webkit-transform 1s ease; transition: transform 1s ease; transition: transform 1s ease, -webkit-transform 1s ease; }
 
 .copy-container .copy-popup.active, .copy-container .save-popup.active, .copy-container .library-popup.active, .save-container .copy-popup.active, .save-container .save-popup.active, .save-container .library-popup.active, .library-container .copy-popup.active, .library-container .save-popup.active, .library-container .library-popup.active { -webkit-transform: translateY(2rem); transform: translateY(2rem); }
+
+.copy-container .library-popup, .save-container .library-popup, .library-container .library-popup { min-width: 40%; overflow-y: scroll; max-height: 50vh; padding: 1rem; overflow-y: scroll; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; }
+
+.copy-container .custom-palette, .save-container .custom-palette, .library-container .custom-palette { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: space-evenly; -ms-flex-pack: space-evenly; justify-content: space-evenly; width: 100%; padding: 2rem; }
+
+.copy-container .custom-palette h4, .save-container .custom-palette h4, .library-container .custom-palette h4 { -webkit-box-flex: 1; -ms-flex: 1; flex: 1; }
+
+.copy-container .pick-palette-btn, .save-container .pick-palette-btn, .library-container .pick-palette-btn { height: 5rem; border: none; padding: 1rem; cursor: pointer; font-size: 1.2rem; background: #444444; color: white; }
+
+.copy-container .small-preview, .save-container .small-preview, .library-container .small-preview { display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-flex: 1; -ms-flex: 1; flex: 1; }
+
+.copy-container .small-preview div, .save-container .small-preview div, .library-container .small-preview div { height: 5rem; -webkit-box-flex: 1; -ms-flex: 1; flex: 1; }
 
 .copy-container .copy-popup h4, .copy-container .save-popup h4, .copy-container .library-popup h4, .save-container .copy-popup h4, .save-container .save-popup h4, .save-container .library-popup h4, .library-container .copy-popup h4, .library-container .save-popup h4, .library-container .library-popup h4 { font-size: 2rem; padding: 0.5rem; }
 
