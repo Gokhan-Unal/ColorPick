@@ -4,7 +4,7 @@ const generateBtn = document.querySelector('.generate')
 const sliders = document.querySelectorAll('input[type="range"]')
 const currentHexes = document.querySelectorAll('.color h2')
 const hexSpans = document.querySelectorAll('.sliders span')
-const popUp = document.querySelector('.copy-container')
+const popup = document.querySelector('.copy-container')
 const adjustBtn = document.querySelectorAll('.adjust')
 const closeAdjustments = document.querySelectorAll('.close-adjustment')
 const sliderContainers = document.querySelectorAll('.sliders')
@@ -37,9 +37,9 @@ currentHexes.forEach((hex) => {
   })
 })
 
-popUp.addEventListener('transitionend', () => {
-  const popupBox = popUp.children[0]
-  popUp.classList.remove('active')
+popup.addEventListener('transitionend', () => {
+  const popupBox = popup.children[0]
+  popup.classList.remove('active')
   popupBox.classList.remove('active')
 })
 
@@ -208,9 +208,9 @@ function copyToClipboard(hex) {
   document.execCommand('copy')
   document.body.removeChild(el)
 
-  const popupBox = popUp.children[0]
+  const popupBox = popup.children[0]
   popupBox.classList.add('active')
-  popUp.classList.add('active')
+  popup.classList.add('active')
 }
 
 function openAdjustmentPanel(index) {
@@ -252,25 +252,27 @@ function closePalette(e) {
 
 function savePalette(e) {
   saveContainer.classList.remove('active')
-  popUp.classList.remove('active')
+  popup.classList.remove('active')
   const name = saveInput.value
   const colors = []
   currentHexes.forEach((hex) => {
     colors.push(hex.innerText)
   })
 
-  let paletteNumber = savedPalettes.length
-
-  const paletteObj = {
-    name,
-    colors,
-    paletteNumber,
+  let paletteNr
+  const paletteObjects = JSON.parse(localStorage.getItem('palettes'))
+  if (paletteObjects) {
+    paletteNr = paletteObjects.length
+  } else {
+    paletteNr = savedPalettes.length
   }
+
+  const paletteObj = { name, colors, nr: paletteNr }
   savedPalettes.push(paletteObj)
-  // console.log(savedPalettes)
+  //Save to localStorage
   saveToLocal(paletteObj)
   saveInput.value = ''
-  // gen palette
+  //Generate the palette for Library
   const palette = document.createElement('div')
   palette.classList.add('custom-palette')
   const title = document.createElement('h4')
@@ -282,19 +284,18 @@ function savePalette(e) {
     smallDiv.style.backgroundColor = smallColor
     preview.appendChild(smallDiv)
   })
+  const paletteBtn = document.createElement('button')
+  paletteBtn.classList.add('pick-palette-btn')
+  paletteBtn.classList.add(paletteObj.nr)
+  paletteBtn.innerText = 'Select'
 
-  const paletteButton = document.createElement('button')
-  paletteButton.classList.add('pick-palette-btn')
-  paletteButton.classList.add(paletteNumber)
-  paletteButton.innerText = 'Select'
-
-  paletteButton.addEventListener('click', (e) => {
+  //Attach event to the btn
+  paletteBtn.addEventListener('click', (e) => {
     closeLibrary()
-    const palatteIndex = e.target.classList[1]
-    console.log(palatteIndex)
+    const paletteIndex = e.target.classList[1]
     initialColors = []
-
-    savedPalettes[palatteIndex].colors.forEach((color, index) => {
+    savedPalettes[paletteIndex].colors.forEach((color, index) => {
+      initialColors.push(color)
       colorDivs[index].style.backgroundColor = color
       const text = colorDivs[index].children[0]
       checkTextContrast(color, text)
@@ -303,9 +304,10 @@ function savePalette(e) {
     resetInputs()
   })
 
+  //Append to Library
   palette.appendChild(title)
   palette.appendChild(preview)
-  palette.appendChild(paletteButton)
+  palette.appendChild(paletteBtn)
   libraryContainer.children[0].appendChild(palette)
 }
 
@@ -332,4 +334,54 @@ function closeLibrary() {
   popup.classList.remove('active')
 }
 
+function getLocal() {
+  if (localStorage.getItem('palettes') === null) {
+    //Local Palettes
+    localPalettes = []
+  } else {
+    const paletteObjects = JSON.parse(localStorage.getItem('palettes'))
+    savedPalettes = [...paletteObjects]
+    paletteObjects.forEach((paletteObj) => {
+      //Generate the palette for Library
+      const palette = document.createElement('div')
+      palette.classList.add('custom-palette')
+      const title = document.createElement('h4')
+      title.innerText = paletteObj.name
+      const preview = document.createElement('div')
+      preview.classList.add('small-preview')
+      paletteObj.colors.forEach((smallColor) => {
+        const smallDiv = document.createElement('div')
+        smallDiv.style.backgroundColor = smallColor
+        preview.appendChild(smallDiv)
+      })
+      const paletteBtn = document.createElement('button')
+      paletteBtn.classList.add('pick-palette-btn')
+      paletteBtn.classList.add(paletteObj.nr)
+      paletteBtn.innerText = 'Select'
+
+      //Attach event to the btn
+      paletteBtn.addEventListener('click', (e) => {
+        closeLibrary()
+        const paletteIndex = e.target.classList[1]
+        initialColors = []
+        paletteObjects[paletteIndex].colors.forEach((color, index) => {
+          initialColors.push(color)
+          colorDivs[index].style.backgroundColor = color
+          const text = colorDivs[index].children[0]
+          checkTextContrast(color, text)
+          updateTextUI(index)
+        })
+        resetInputs()
+      })
+
+      //Append to Library
+      palette.appendChild(title)
+      palette.appendChild(preview)
+      palette.appendChild(paletteBtn)
+      libraryContainer.children[0].appendChild(palette)
+    })
+  }
+}
+
+getLocal()
 randomColors()
