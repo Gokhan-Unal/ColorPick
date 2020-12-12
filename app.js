@@ -288,6 +288,21 @@ function savePalette(e) {
   paletteButton.classList.add(paletteNumber)
   paletteButton.innerText = 'Select'
 
+  paletteButton.addEventListener('click', (e) => {
+    closeLibrary()
+    const palatteIndex = e.target.classList[1]
+    console.log(palatteIndex)
+    initialColors = []
+
+    savedPalettes[palatteIndex].colors.forEach((color, index) => {
+      colorDivs[index].style.backgroundColor = color
+      const text = colorDivs[index].children[0]
+      checkTextContrast(color, text)
+      updateTextUI(index)
+    })
+    resetInputs()
+  })
+
   palette.appendChild(title)
   palette.appendChild(preview)
   palette.appendChild(paletteButton)
