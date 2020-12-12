@@ -230,6 +230,7 @@ const saveInput = document.querySelector('.save-container input')
 
 saveBtn.addEventListener('click', openPalette)
 closeSave.addEventListener('click', closePalette)
+submitSave.addEventListener('click', savePalette)
 
 function openPalette(e) {
   const popup = saveContainer.children[0]
@@ -242,6 +243,39 @@ function closePalette(e) {
   console.log(popup)
   saveContainer.classList.remove('active')
   popup.classList.remove('active')
+}
+
+function savePalette(e) {
+  saveContainer.classList.remove('active')
+  popUp.classList.remove('active')
+  const name = saveInput.value
+  const colors = []
+  currentHexes.forEach((hex) => {
+    colors.push(hex.innerText)
+  })
+
+  let paletteNumber = savedPalettes.length
+
+  const paletteObj = {
+    name,
+    colors,
+    paletteNumber,
+  }
+  savedPalettes.push(paletteObj)
+  // console.log(savedPalettes)
+  saveToLocal(paletteObj)
+  saveInput.value = ''
+}
+
+function saveToLocal(paletteObj) {
+  let localPalettes
+  if (localStorage.getItem('palettes') === null) {
+    localPalettes = []
+  } else {
+    localPalettes = JSON.parse(localStorage.getItem('palettes'))
+  }
+  localPalettes.push(paletteObj)
+  localStorage.setItem('palettes', JSON.stringify(localPalettes))
 }
 
 randomColors()

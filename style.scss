@@ -165,12 +165,12 @@ svg {
     justify-content: space-evenly;
     align-items: center;
     border-radius: 1rem;
-    transform: translateY(-2rem);
-    transition: transform 0.5s ease;
+    transition: transform 1s ease;
 
     &.active {
       transform: translateY(2rem);
     }
+    
   }
 
   .copy-popup h4,
